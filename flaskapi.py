@@ -1,50 +1,12 @@
-import datetime
 from flask import Flask, jsonify, render_template
 import requests
 
 app = Flask(__name__)
 
-token_info = {
-    "access_token": None,
-    "expires_at": datetime.utcnow()
-}
-
-# Function to check the validity of the token
-def is_token_valid():
-    return datetime.utcnow() < token_info["expires_at"]
-
-# Function to refresh the access token
-def refresh_access_token():
-    # Replace these with your Reddit app credentials
-    client_id = 'YOUR_CLIENT_ID'
-    client_secret = 'YOUR_CLIENT_SECRET'
-    username = 'abomario'
-    password = 'makh1572
-    
-
-    auth = requests.auth.HTTPBasicAuth(client_id, client_secret)
-    data = {
-        'grant_type': 'password',
-        'username': username,
-        'password': password
-    }
-    headers = {
-        'User-Agent': 'YourUserAgent/0.1 by YourRedditUsername'
-    }
-    
-    res = requests.post('https://www.reddit.com/api/v1/access_token',
-                        auth=auth, data=data, headers=headers)
-    res.raise_for_status()  # Check for request failure
-    token = res.json()
-    
-    token_info["access_token"] = token['access_token']
-    # Assuming the token expires in 1 hour by default
-    token_info["expires_at"] = datetime.utcnow() + datetime.timedelta(seconds=token['expires_in'])
-
-@app.route('/', methods=['GET'])
+@app.route('/soccer', methods=['GET'])
 def get_soccer_data():
-    url = "https://oauth.reddit.com/r/all"
-    access_token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IlNIQTI1NjpzS3dsMnlsV0VtMjVmcXhwTU40cWY4MXE2OWFFdWFyMnpLMUdhVGxjdWNZIiwidHlwIjoiSldUIn0.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzExNzEyODgwLjkzNjQ4NiwiaWF0IjoxNzExNjI2NDgwLjkzNjQ4NiwianRpIjoiZ2pRTkpCbURNQkVzSWlLbThmNEQzNzRKZVFPNmdBIiwiY2lkIjoiT0NnSUVNZzlqakxzakMtOW9zN1pCQSIsImxpZCI6InQyXzE1Y2s5MCIsImFpZCI6InQyXzE1Y2s5MCIsImxjYSI6MTQ4Njk1NzQxMTgyMiwic2NwIjoiZUp5S1Z0SlNpZ1VFQUFEX193TnpBU2MiLCJmbG8iOjl9.Thwb2oM0RL_oaUaUyxE0lpcEVnOOsHdSaVMEnrkSYB0xidzYhCjjS3LnJkCMdNSxle6HsGEzQqvDrAQVvKV0IqH1FrG-qzPYpknQlSMp1QobYxzbeAPwxUETd5PyDHDLIiSLab7gPpb4WgFkMli-covrXfQAf-YyAtVUDsamCPzFHY21XlKTcvB4H2Pt_Fy3eCx4plIgFksSX12bWMZ6Jmtti9u220s-bpd1gIW_UQLaKRbzWn2dxwLsYS1aduKVhg-fi2sGKWbbHOD8EpKo1EiXvNcWdi1IcEtoUZzGhdHWDjx3m7ylopliXVntOW029aOoellFZH-HIsJd1hyZuA'
+    url = "https://oauth.reddit.com/r/soccer/new"
+    access_token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IlNIQTI1NjpzS3dsMnlsV0VtMjVmcXhwTU40cWY4MXE2OWFFdWFyMnpLMUdhVGxjdWNZIiwidHlwIjoiSldUIn0.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzEzMjE3NDA1LjY1MjE2NywiaWF0IjoxNzEzMTMxMDA1LjY1MjE2NywianRpIjoiZGh0bUl2OWhtbWtfS3BuUDBPY21zdTlvUzVlR3d3IiwiY2lkIjoiT0NnSUVNZzlqakxzakMtOW9zN1pCQSIsImxpZCI6InQyXzE1Y2s5MCIsImFpZCI6InQyXzE1Y2s5MCIsImxjYSI6MTQ4Njk1NzQxMTgyMiwic2NwIjoiZUp5S1Z0SlNpZ1VFQUFEX193TnpBU2MiLCJmbG8iOjl9.qWemxxA7kyw8XApWnHvOXYEre78iuQQbXe-ooyjUJ7Hd527HfamFMol-kuxF6nqpYl9UKS7XEuWZRWTv7PRPAesXInpqLm1G2Ic99MMUkIuwrWeWWLys4qH8eScQpQG7Cm1ZdrFojJlRXM0-p79lHdntIK9-jZguCmEanXfrdSFnIz1ud8OIZVbGmp6hvx6OxMCwshB-ccW_Um4glKQREfG9abJbxpwqHPb01nVZB6mjhsq1EAxGdXYno6MUTPLAZ3xM2jG2D3MlqoXsGe1SV9_3guzlIJZv2I-qUIcZXOzKJFqkFMHMJdKrwkxA4o043opoa9zh0-mxQTWH06MxLA'
     user_agent = "YourUserAgent/0.1 by YourRedditUsername"
 
     headers = {
@@ -53,7 +15,7 @@ def get_soccer_data():
     }
     
     params = {
-        "limit": 500
+        "limit": 50
     }
     
     response = requests.get(url, headers=headers, params=params)
@@ -65,4 +27,6 @@ def get_soccer_data():
         return jsonify({"error": "Failed to retrieve data from Reddit"}), response.status_code
 
 if __name__ == '__main__':
+    endpoint = 'http://127.0.0.1:8080/soccer'
+    print(f"Flask API running at endpoint: \033[34m{endpoint}\033[0m\n")
     app.run(debug=True, port=8080)
