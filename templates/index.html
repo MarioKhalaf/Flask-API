@@ -1,0 +1,53 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer API</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
+</head>
+<body>
+    <h1>Soccer Data</h1>
+    
+    <!-- Updated Search Container without Font Awesome Icon -->
+    <div id="search-container">
+        <input type="text" id="searchInput" placeholder="Search posts...">
+    </div>
+
+    <!-- List of soccer data -->
+    <ul id="data-list">
+        {% for item in data %}
+            <li>
+                <!-- Make the anchor tag the outermost tag inside the list item -->
+                <a href="https://www.reddit.com{{ item['permalink'] }}" target="_blank" class="post-wrapper">
+                    {{ item['title'] }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const searchInput = document.getElementById('searchInput');
+        const dataList = document.getElementById('data-list');
+
+        searchInput.addEventListener('keyup', (e) => {
+            const term = e.target.value.toLowerCase();
+            const items = dataList.getElementsByTagName('li');
+
+            Array.from(items).forEach((item) => {
+                const title = item.textContent;
+                if (title.toLowerCase().indexOf(term) != -1) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>

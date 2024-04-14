@@ -1,0 +1,131 @@
+/* General styles */
+body {
+    background-color: #f7f7f7; /* Fallback color */
+    background-image: url('background.jpg'); /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    margin: 0;
+    line-height: 1.6;
+    color: #333; /* You might want to change the text color for better contrast */
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+ul#data-list {
+    /* Assuming you want no padding or margin for the ul */
+    margin: 0 auto;
+    padding: 0;
+    max-width: 600px; /* Or some other maximum width */
+}
+
+ul#data-list li {
+    background-color: transparent; /* Removing the white background from the li */
+    margin-bottom: 15px; /* Add some space between the posts */
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    list-style-type: none; /* Remove the bullet points */
+    /* Do not set a width here, so it naturally takes the width of its content */
+}
+.post-wrapper {
+    padding: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: block; /* Make the whole area clickable */
+    color: #333; /* Default text color */
+    text-decoration: none; /* No underline */
+    max-width: 600px; /* or any size that fits your design */
+    margin: 10px auto; /* Centers the box and adds vertical space */
+    padding: 15px; /* or adjust as needed */
+    background-color: #ffffff; /* or any color that matches your theme */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjust the color, opacity, and spread as needed */
+    background-color: rgba(255, 255, 255, 0.9); /* White with some transparency */
+    display: block; /* This makes the <a> tag fill its container */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color from parent */
+    /* ... */
+
+        
+}
+
+.post-wrapper:hover {
+    background-color: #f8f8f8;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-decoration: none; /* No underline on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+    background-color: #f8f8f8; /* Slightly different background on hover */
+    transform: scale(1.1); /* Scales up the wrapper a bit */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly larger and darker shadow on hover for more depth */
+}
+
+a.full-width-link {
+    color: inherit; /* Inherit color from parent */
+    text-decoration: none;
+}
+
+a.full-width-link:hover {
+    text-decoration: none; /* No underline on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .post-wrapper {
+        padding: 15px;
+    }
+    #searchInput {
+        padding: 10px 15px; /* Adjust padding for smaller screens */
+        padding-left: 35px; /* Adjust left padding for the icon */
+    }
+}
+
+/* Search box container */
+#search-container {
+    display: flex;
+    justify-content: center; /* Center the search box */
+    position: relative; /* Set position context for absolute positioning of the icon */
+    margin: 20px 0;
+}
+
+/* Search input styling */
+#searchInput {
+    width: 100%; /* Full width on small screens */
+    max-width: 500px; /* Maximum width on large screens */
+    padding: 15px 20px; /* Comfortable padding */
+    padding-left: 50px; /* Adjusted left padding to accommodate the icon */
+    font-size: 16px; /* Legible font size */
+    border: 2px solid #ddd; /* Subtle border */
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow */
+    outline: none; /* Remove focus outline */
+    transition: all 0.3s; /* Smooth transition for interactions */
+    background: url("searchimage.png") no-repeat 10px center; /* Add your search icon path */
+    background-size: 35px; /* Icon size */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transform to the transition */
+
+}
+
+#searchInput::placeholder {
+    color: #aaa; /* Lighter text for placeholder */
+}
+
+#searchInput:focus {
+    border-color: #0056b3; /* Highlight color on focus */
+    box-shadow: 0 0 8px rgba(0,86,179,0.2); /* Stronger shadow on focus */
+}
