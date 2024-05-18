@@ -1,11 +1,6 @@
 /* General styles */
 body {
     background-color: #f7f7f7; /* Fallback color */
-    background-image: url('background.jpg'); /* Path to your background image */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 20px;
     margin: 0;
