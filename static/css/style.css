@@ -1,16 +1,81 @@
 /* General styles */
 body {
-    background-color: #f7f7f7; /* Fallback color */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
     margin: 0;
     line-height: 1.6;
-    color: #333; /* You might want to change the text color for better contrast */
+    color: #333;
+    background-color: #f7f7f7;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #008080; /* Teal color */
+    color: #fff;
 }
 
 h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+#header-right {
+    display: flex;
+    align-items: center;
+}
+
+#content {
+    display: flex;
+}
+
+aside#sidebar {
+    width: 250px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+aside#sidebar h2 {
+    margin-top: 0;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: #008080; /* Teal color */
+    border-bottom: 2px solid #008080;
+    padding-bottom: 10px;
+}
+
+aside#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+aside#sidebar ul li {
+    margin: 10px 0;
     text-align: center;
+}
+
+aside#sidebar ul li a {
+    text-decoration: none;
     color: #333;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+aside#sidebar ul li a:hover {
+    background-color: #008080; /* Teal color */
+    color: #fff;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
 }
 
 ul {
@@ -19,64 +84,150 @@ ul {
 }
 
 li {
-    background-color: #fff;
     margin-bottom: 15px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
 }
+
 ul#data-list {
-    /* Assuming you want no padding or margin for the ul */
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
-    max-width: 600px; /* Or some other maximum width */
 }
 
-ul#data-list li {
-    background-color: transparent; /* Removing the white background from the li */
-    margin-bottom: 15px; /* Add some space between the posts */
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    list-style-type: none; /* Remove the bullet points */
-    /* Do not set a width here, so it naturally takes the width of its content */
-}
 .post-wrapper {
-    padding: 20px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    display: block; /* Make the whole area clickable */
-    color: #333; /* Default text color */
-    text-decoration: none; /* No underline */
-    max-width: 600px; /* or any size that fits your design */
-    margin: 10px auto; /* Centers the box and adds vertical space */
-    padding: 15px; /* or adjust as needed */
-    background-color: #ffffff; /* or any color that matches your theme */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjust the color, opacity, and spread as needed */
-    background-color: rgba(255, 255, 255, 0.9); /* White with some transparency */
-    display: block; /* This makes the <a> tag fill its container */
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit text color from parent */
-    /* ... */
-
-        
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #333;
+    width: 100%;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
 .post-wrapper:hover {
-    background-color: #f8f8f8;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    text-decoration: none; /* No underline on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
-    background-color: #f8f8f8; /* Slightly different background on hover */
-    transform: scale(1.1); /* Scales up the wrapper a bit */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly larger and darker shadow on hover for more depth */
+    background-color: rgba(0, 102, 102, 0.7);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
 }
 
-a.full-width-link {
-    color: inherit; /* Inherit color from parent */
-    text-decoration: none;
+.post-thumbnail img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin-right: 15px;
 }
 
-a.full-width-link:hover {
-    text-decoration: none; /* No underline on hover */
+.post-content {
+    flex-grow: 1;
+}
+
+#search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px 50px 15px 20px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    outline: none;
+    background: url("https://example.com/search-icon.png") no-repeat 95% center;
+    background-size: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#searchInput::placeholder {
+    color: #aaa;
+}
+
+#searchInput:focus {
+    border-color: #008080; /* Teal color */
+    box-shadow: 0 0 8px rgba(0, 128, 128, 0.2);
+}
+
+#darkModeToggle {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: #008080; /* Teal color */
+    color: #fff;
+}
+
+#darkModeToggle:hover {
+    background-color: #006666;
+}
+
+/* Footer styles */
+footer {
+    padding: 20px;
+    background-color: #008080; /* Teal color */
+    color: #fff;
+    text-align: center;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode aside#sidebar {
+    background-color: #333;
+}
+
+body.dark-mode aside#sidebar ul li a {
+    color: #ddd;
+}
+
+body.dark-mode .post-wrapper {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .post-wrapper:hover {
+    background-color: rgba(0, 102, 102, 0.7);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode #searchInput {
+    background-color: #555;
+    border: 2px solid #777;
+    color: #e0e0e0;
+}
+
+body.dark-mode #searchInput::placeholder {
+    color: #ccc;
+}
+
+body.dark-mode #searchInput:focus {
+    border-color: #ddd;
+    box-shadow: 0 0 8px rgba(200, 200, 200, 0.2);
+}
+
+body.dark-mode #darkModeToggle {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode #darkModeToggle:hover {
+    background-color: #555;
 }
 
 /* Responsive design */
@@ -85,42 +236,7 @@ a.full-width-link:hover {
         padding: 15px;
     }
     #searchInput {
-        padding: 10px 15px; /* Adjust padding for smaller screens */
-        padding-left: 35px; /* Adjust left padding for the icon */
+        padding: 10px 15px;
+        padding-left: 35px;
     }
-}
-
-/* Search box container */
-#search-container {
-    display: flex;
-    justify-content: center; /* Center the search box */
-    position: relative; /* Set position context for absolute positioning of the icon */
-    margin: 20px 0;
-}
-
-/* Search input styling */
-#searchInput {
-    width: 100%; /* Full width on small screens */
-    max-width: 500px; /* Maximum width on large screens */
-    padding: 15px 20px; /* Comfortable padding */
-    padding-left: 50px; /* Adjusted left padding to accommodate the icon */
-    font-size: 16px; /* Legible font size */
-    border: 2px solid #ddd; /* Subtle border */
-    border-radius: 25px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow */
-    outline: none; /* Remove focus outline */
-    transition: all 0.3s; /* Smooth transition for interactions */
-    background: url("searchimage.png") no-repeat 10px center; /* Add your search icon path */
-    background-size: 35px; /* Icon size */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transform to the transition */
-
-}
-
-#searchInput::placeholder {
-    color: #aaa; /* Lighter text for placeholder */
-}
-
-#searchInput:focus {
-    border-color: #0056b3; /* Highlight color on focus */
-    box-shadow: 0 0 8px rgba(0,86,179,0.2); /* Stronger shadow on focus */
 }

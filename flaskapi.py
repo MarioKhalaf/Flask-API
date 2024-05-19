@@ -1,11 +1,13 @@
 from flask import Flask, jsonify, render_template
 import requests
 import time
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
 
-# Global variable to store token and expiry time
 token_info = {
     "access_token": None,
     "expires_at": 0
@@ -15,12 +17,10 @@ def generate_new_token():
     url = 'https://www.reddit.com/api/v1/access_token'
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic T0NnSUVNZzlqakxzakMtOW9zN1pCQToyYXpjcE9UTFB2dkNudzNDY0ZCYi1MaTBsUGM2YUE=',
+        'Authorization': f"Basic {os.getenv('REDDIT_AUTH')}",
     }
     data = {
-        'grant_type': 'password',
-        'username': 'abomario',
-        'password': 'makh1572'
+        'grant_type': 'client_credentials'
     }
 
     response = requests.post(url, headers=headers, data=data)
@@ -57,10 +57,9 @@ def get_soccer_data():
         formatted_data = [{"title": child["data"]["title"], "permalink": child["data"]["permalink"]} for child in data]
         return render_template('index.html', data=formatted_data)
     else:
-        print(f"Failed to retrieve data: {response.status_code} - {response.text}")
-        return jsonify({"error": "Failed to retrieve data from Reddit"}), response.status_code
+        error_message = f"Failed to retrieve data: {response.status_code} - {response.text}"
+        print(error_message)
+        return jsonify({"error": error_message}), response.status_code
 
 if __name__ == '__main__':
-    endpoint = 'http://127.0.0.1:8080'
-    print(f"Flask API running at endpoint: \033[34m{endpoint}\033[0m\n")
-    app.run(debug=True, port=8080)
+    app.run(debug=True, host='0.0.0.0', port=8080)

@@ -1,37 +1,66 @@
-<!-- templates/index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soccer API</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Soccer Data</h1>
-    
-    <!-- Updated Search Container without Font Awesome Icon -->
-    <div id="search-container">
-        <input type="text" id="searchInput" placeholder="Search posts...">
-    </div>
+    <div class="container">
+        <header>
+            <h1>Soccer Data</h1>
+            <div id="header-right">
+                <button id="darkModeToggle">Toggle Dark Mode</button>
+            </div>
+        </header>
 
-    <!-- List of soccer data -->
-    <ul id="data-list">
-        {% for item in data %}
-            <li>
-                <!-- Make the anchor tag the outermost tag inside the list item -->
-                <a href="https://www.reddit.com{{ item['permalink'] }}" target="_blank" class="post-wrapper">
-                    {{ item['title'] }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+        <div id="content">
+            <aside id="sidebar">
+                <h2>Navigation</h2>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Latest News</a></li>
+                    <li><a href="#">Live Scores</a></li>
+                    <li><a href="#">Teams</a></li>
+                    <li><a href="#">Players</a></li>
+                    <li><a href="#">Stats</a></li>
+                </ul>
+            </aside>
+
+            <main>
+                <div id="search-container">
+                    <input type="text" id="searchInput" placeholder="Search posts...">
+                </div>
+
+                <ul id="data-list">
+                    {% for item in data %}
+                        <li>
+                            <a href="https://www.reddit.com{{ item['permalink'] }}" target="_blank" class="post-wrapper">
+                                <div class="post-thumbnail">
+                                    <img src="https://via.placeholder.com/80" alt="Post Thumbnail">
+                                </div>
+                                <div class="post-content">
+                                    {{ item['title'] }}
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </main>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Soccer API. All rights reserved.</p>
+        </footer>
+    </div>
 
     <script>
     window.addEventListener('DOMContentLoaded', (event) => {
         const searchInput = document.getElementById('searchInput');
         const dataList = document.getElementById('data-list');
+        const darkModeToggle = document.getElementById('darkModeToggle');
 
         searchInput.addEventListener('keyup', (e) => {
             const term = e.target.value.toLowerCase();
@@ -46,8 +75,11 @@
                 }
             });
         });
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
     });
     </script>
-
 </body>
 </html>
