@@ -113,13 +113,6 @@ ul#data-list {
     transform: scale(1.02);
 }
 
-.post-thumbnail img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    margin-right: 15px;
-}
-
 .post-content {
     flex-grow: 1;
 }
@@ -222,21 +215,5 @@ body.dark-mode #searchInput:focus {
 }
 
 body.dark-mode #darkModeToggle {
-    background-color: #444;
-    color: #e0e0e0;
-}
-
-body.dark-mode #darkModeToggle:hover {
-    background-color: #555;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .post-wrapper {
-        padding: 15px;
-    }
-    #searchInput {
-        padding: 10px 15px;
-        padding-left: 35px;
-    }
+    background-color: #006666;
 }
